@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карточки</title>
+    <link rel="stylesheet" href="../static/css/F_index.css">
+</head>
+<header>
+    <div class="header">
+        <div class="header-left">
+            <a href="/">Домашняя страница</a>
+        </div>
+        <div class="header-right">
+            <a href="/logout">Выйти</a>
+        </div>
+    </div>
+</header>
+<head>
+    <meta charset="UTF-8">
+    <title>Мои записи</title>
+</head>
+<body>
+    <h1>Мои записи</h1>
+    <div class="card-container">
+        {% for card in cards %}
+            <div class="card">
+                {% if card %} <!-- Проверяем, является ли карточка пустой -->
+                    <a href="{{ url_for('card', id = card.id) }}">  <!-- Добавляем ссылку -->
+                        {% if card.image_url %}
+                            <img src="" alt="{{ card.title }}">
+                        {% endif %}
+                        <img src="../static/img/card.jpg" alt="login" width="200" height="200" title="login" loading="lazy"><br>
+                        <h2>{{ card.title }}</h2>
+                        <H3>{{ card.subtitle }}</H3>
+                    </a> <!-- Закрываем ссылку -->
+                {% else %}
+                    <a href="{{ url_for('form_create') }}" class = 'create-card-link'> + Создать новую карточку </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Пагинация -->
+    <div class="pagination">
+        {% if pagination.has_prev %}
+            <a href="{{ url_for('index', page=pagination.prev_num) }}">Предыдущая</a>
+        {% endif %}
+
+        {% for page in pagination.iter_pages() %}
+            {% if page %}
+                {% if page != pagination.page %}
+                    <a href="{{ url_for('index', page=page) }}">{{ page }}</a>
+                {% else %}
+                    <strong>{{ page }}</strong>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+
+        {% if pagination.has_next %}
+            <a href="{{ url_for('index', page=pagination.next_num) }}">Следующая</a>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>создание карточки</title>
+    <link rel="stylesheet" href="../static/css/F_index.css">
+</head>
+<header>
+    <div class="header">
+        <div class="header-left">
+            <a href="/">Домашняя страница</a>
+        </div>
+        <div class="header-right">
+            <a href="/login">Логин</a>
+        </div>
+    </div>
+</header>
+<body>
+    <h1>Создать новую карточку</h1>
+    <form method="post" action="{{ url_for('form_create') }}">
+        <label for="title">Заголовок:</label><br>
+        <input type="text" id="title" name="title"><br><br>
+
+        <label for="subtitle">Подзаголовка:</label><br>
+        <input type="text" id="subtitle" name="subtitle"><br><br>
+
+        <label for="text">Текст:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50"></textarea><br><br>
+
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="{{ url_for('index') }}">Отмена</a>
+</body>
+</html>

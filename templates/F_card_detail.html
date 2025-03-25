@@ -1,0 +1,29 @@
+<!--Этот шаблон отображает подробную информацию о карточке, полученной из app.py-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ card.title }}</title>
+    <link rel="stylesheet" href="../static/css/F_index.css">
+</head>
+<header>
+    <div class="header">
+        <div class="header-left">
+            <a href="/">Домашняя страница</a>
+        </div>
+        <div class="header-right">
+            <a href="/logout">Выйти</a>
+        </div>
+    </div>
+</header>
+<body>
+    <h1>{{ card.title }}</h1>
+    {% if card.image_url %}
+    <img src="" alt="{{ card.title }}">
+    {% endif %}
+    <img src="../static/img/card.jpg" alt="login" width="200" height="200" title="login" loading="lazy"><br>
+    <p>{{ card.title }}</p>             <!--выводят заголовок-->
+    <p>{{ card.subtitle }}</p>          <!--выводят subtitle-->
+    <p>{{ card.text }}</p>              <!--выводят text-->
+    <a href="{{ url_for('index') }}">Вернуться на главную</a>
+</body>
+</html>
